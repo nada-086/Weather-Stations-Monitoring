@@ -1,4 +1,4 @@
-package org.example;
+package weatherStation;
 
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -6,6 +6,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static weatherStation.KafkaMsgProducer.rainingTriggers;
+import static weatherStation.KafkaMsgProducer.sendMsg;
 
 public class WeatherStationMock {
 
@@ -35,7 +38,10 @@ public class WeatherStationMock {
                 String message = generateWeatherStatus();
                 if (message != null) {
                     // Kafka Producer must be set here
-                    System.out.println(message);
+//                    System.out.println(message);
+                    String stationTopic = "weather_station_topic";
+                    sendMsg(stationTopic, message);
+                    rainingTriggers(stationTopic);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
