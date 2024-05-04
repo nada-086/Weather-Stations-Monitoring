@@ -32,7 +32,7 @@ public class Bitcask {
             currentFile.createNewFile();
             currentFileStream = new RandomAccessFile(currentFile, "rw");}
         catch (IOException e) {
-             e.printStackTrace();}
+            e.printStackTrace();}
     }
 
     private boolean recover() {

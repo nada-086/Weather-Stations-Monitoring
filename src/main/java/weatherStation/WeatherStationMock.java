@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
+
 import static weatherStation.KafkaMsgProducer.rainingTriggers;
 import static weatherStation.KafkaMsgProducer.sendMsg;
 
@@ -16,6 +18,7 @@ public class WeatherStationMock {
     private static final ObjectMapper mapper = new ObjectMapper();
     private static final Random random = new Random();
     private static final ScheduledExecutorService executor = Executors.newScheduledThreadPool(NUM_STATIONS);
+
 
     public static void main(String[] args) {
         for (int i = 1; i <= NUM_STATIONS; i++) {
@@ -42,6 +45,7 @@ public class WeatherStationMock {
                     String stationTopic = "weather_station_topic";
                     sendMsg(stationTopic, message);
                     rainingTriggers(stationTopic);
+                    
                 }
             } catch (Exception e) {
                 e.printStackTrace();
