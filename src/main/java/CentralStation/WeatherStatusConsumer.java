@@ -20,11 +20,7 @@ public class WeatherStatusConsumer {
     private static final Bitcask bitcask = new Bitcask("/home/toka/Documents/weather_station_data");
     private static final ParquetStatusWriter parquetWriter;
     static {
-        try {
-            parquetWriter = new ParquetStatusWriter();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to initialize ParquetStatusWriter", e);
-        }
+        parquetWriter = new ParquetStatusWriter();
     }
 
 
@@ -56,11 +52,10 @@ public class WeatherStatusConsumer {
          //store in parquet files here
          try {
             parquetWriter.archiveWeatherStatus(stationStatus);
+            System.out.println("outttttttttttttttttttttttttttttttt");
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        
+        }        
     }
 
     private static Station extracStationDetails(String jsonMessage) throws JsonMappingException, JsonProcessingException{

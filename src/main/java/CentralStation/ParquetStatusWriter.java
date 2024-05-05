@@ -1,118 +1,108 @@
 package CentralStation;
 
-
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FileSystem;
+import org.apache.avro.Schema;
+import org.apache.avro.SchemaBuilder;
+import org.apache.avro.generic.GenericData;
+import org.apache.avro.generic.GenericRecord;
 import org.apache.hadoop.fs.Path;
-import org.apache.parquet.example.data.Group;
-import org.apache.parquet.example.data.simple.SimpleGroupFactory;
+import org.apache.parquet.avro.AvroParquetWriter;
 import org.apache.parquet.hadoop.ParquetWriter;
-import org.apache.parquet.hadoop.example.GroupWriteSupport;
-import org.apache.parquet.schema.MessageType;
-import org.apache.parquet.schema.MessageTypeParser;
+import org.apache.parquet.hadoop.metadata.CompressionCodecName;
 
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ParquetStatusWriter {
-    private static final String OUTPUT_PATH = "/home/Documents/weather_statuses_directory";
-    private static final int BATCH_SIZE = 10000; // Common batch size
-    private static final DateTimeFormatter TIMESTAMP_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final String OUTPUT_PATH = "/home/toka/Documents/weather_statuses_directory";
+    private static final int BATCH_SIZE = 10; //10000
+    private List<Station> recordBuffer;
+    private static final HashMap<Long, String> paths = new HashMap<>();
+    private static final HashMap<Long, ParquetWriter<GenericRecord>> writers = new HashMap<>();
 
-    private Map<String, ParquetWriter<Group>> writerMap;
-    private List<Group> recordBuffer;
-    private FileSystem fileSystem;
-
-    public ParquetStatusWriter() throws IOException {
+    public ParquetStatusWriter() {
         recordBuffer = new ArrayList<>();
-        writerMap = new HashMap<>();
-        Configuration conf = new Configuration();
-        fileSystem = FileSystem.get(conf);
     }
 
-    private static MessageType createSchema() {
-        String schemaString = "message WeatherStatus {\n" +
-                "  required long station_id;\n" +
-                "  required long s_no;\n" +
-                "  required binary battery_status (UTF8);\n" +
-                "  required int64 timestamp;\n" +
-                "  required int32 humidity;\n" +
-                "  required int32 temperature;\n" +
-                "  required int32 wind_speed;\n" +
-                "}";
-        return MessageTypeParser.parseMessageType(schemaString);
+    private static Schema createSchema() {
+        return SchemaBuilder.record("weather_statuses")
+                .fields()
+                .name("station_id").type().longType().noDefault()
+                .name("s_no").type().longType().noDefault()
+                .name("battery_status").type().stringType().noDefault()
+                .name("status_timestamp").type().longType().noDefault()
+                .name("weather_humidity").type().intType().noDefault()
+                .name("weather_temperature").type().intType().noDefault()
+                .name("weather_wind_speed").type().intType().noDefault()
+                .endRecord();
     }
 
     public void archiveWeatherStatus(Station status) throws IOException {
-        recordBuffer.add(convertToGroup(status));
+        recordBuffer.add(status);
         if (recordBuffer.size() >= BATCH_SIZE) {
             writeBatchToParquet();
         }
     }
 
     private void writeBatchToParquet() throws IOException {
-        for (Group record : recordBuffer) {
-            String partitionPath = generatePartitionPath(record);
-            ParquetWriter<Group> writer = writerMap.computeIfAbsent(partitionPath, t -> {
-                try {
-                    return createWriter(t);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return null;
+        try {
+            for (Station status : recordBuffer) {
+                long stationID = status.getStationId();
+                String generatedPath = generatePartitionPath(status);
+                if (paths.get(stationID) == null || !generatedPath.equals(paths.get(stationID))) {
+                    createWriter(generatedPath, stationID);
                 }
-            });
-            if (writer != null) {
-                writer.write(record);
+                GenericRecord record = new GenericData.Record(createSchema());
+                record.put("station_id", stationID);
+                record.put("s_no", status.getSNo());
+                record.put("battery_status", status.getBatteryStatus());
+                record.put("status_timestamp", status.getStatusTimestamp());
+                record.put("weather_humidity", status.getWeather().getHumidity());
+                record.put("weather_temperature", status.getWeather().getTemperature());
+                record.put("weather_wind_speed", status.getWeather().getWindSpeed());
+                writers.get(stationID).write(record);
             }
+        } catch (IOException e) {
+            throw new RuntimeException("Error writing batch to Parquet: " + e.getMessage(), e);
+        } finally {
+            recordBuffer.clear(); // Clear the buffer after writing
         }
-        recordBuffer.clear();
     }
 
     @SuppressWarnings("deprecation")
-    private ParquetWriter<Group> createWriter(String partitionPath) throws IOException {
-        MessageType schema = createSchema();
-        Configuration conf = new Configuration();
-        GroupWriteSupport writeSupport = new GroupWriteSupport();
-        GroupWriteSupport.setSchema(schema, conf);
-        Path path = new Path(partitionPath);
-        return new ParquetWriter<>(path, writeSupport, ParquetWriter.DEFAULT_COMPRESSION_CODEC_NAME,
-                ParquetWriter.DEFAULT_BLOCK_SIZE, ParquetWriter.DEFAULT_PAGE_SIZE, ParquetWriter.DEFAULT_PAGE_SIZE,
-                ParquetWriter.DEFAULT_IS_DICTIONARY_ENABLED, ParquetWriter.DEFAULT_IS_VALIDATING_ENABLED,
-                ParquetWriter.DEFAULT_WRITER_VERSION, conf);
-    }
-
-    private Group convertToGroup(Station status) {
-        SimpleGroupFactory groupFactory = new SimpleGroupFactory(createSchema());
-        return groupFactory.newGroup()
-                .append("station_id", status.getStationId())
-                .append("s_no", status.getSNo())
-                .append("battery_status", status.getBatteryStatus())
-                .append("timestamp", status.getStatusTimestamp())
-                .append("humidity", status.getWeather().getHumidity())
-                .append("temperature", status.getWeather().getTemperature())
-                .append("wind_speed", status.getWeather().getWindSpeed());
-    }
-
-    private String generatePartitionPath(Group record) {
-        long timestamp = record.getLong("timestamp", 3);
-        long stationId = record.getLong("station_id", 0);
-        Instant instant = Instant.ofEpochMilli(timestamp);
-        String datePartition = TIMESTAMP_FORMATTER.format(LocalDateTime.ofInstant(instant, ZoneOffset.UTC));
-        return OUTPUT_PATH + "/" + datePartition + "/station_" + stationId + ".parquet";
-    }
-
-    public void close() throws IOException {
-        for (ParquetWriter<Group> writer : writerMap.values()) {
-            if (writer != null) {
-                writer.close();
-            }
+    private void createWriter(String generatedPath, long stationID) throws IOException {
+        paths.put(stationID, generatedPath);
+        CompressionCodecName codec = CompressionCodecName.SNAPPY;
+        if (writers.get(stationID) != null) {
+            writers.get(stationID).close();
         }
+        writers.put(stationID, AvroParquetWriter.<GenericRecord>builder(new Path(generatedPath))
+                .withSchema(createSchema())
+                .withCompressionCodec(codec)
+                .withDataModel(GenericData.get())
+                .build());
     }
-}
+
+ private String generatePartitionPath(Station status) {
+        Instant instant = Instant.ofEpochSecond(status.getStatusTimestamp());
+        LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+        int year = dateTime.getYear();
+        String month = Month.of(dateTime.getMonthValue()).toString();
+        int day = dateTime.getDayOfMonth();
+        int hour = dateTime.getHour();
+        int minute = dateTime.getMinute();
+        int sec = dateTime.getSecond();
+
+        return OUTPUT_PATH + "/" + year + "-" + month + "-" + day +
+             "/" + "Station" + status.getStationId() +
+             "/"  + hour + "-" + minute + "-" + sec + ".parquet";
+ }}

@@ -14,29 +14,78 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>3.7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>1.2.6</version> <!-- or the latest version available -->
-        </dependency>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams</artifactId>
-            <version>3.7.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.14.0</version>
-        </dependency>
+        <!-- kafka -->
+       <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-clients</artifactId>
+        <version>3.7.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-streams</artifactId>
+        <version>3.7.0</version>
+    </dependency>
 
+    <!-- Logging -->
+    <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.4.12</version>
+    </dependency>
 
-    </dependencies>
+    <!-- JSON -->
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.14.0</version>
+    </dependency>
+
+    <!-- Elasticsearch -->
+    <dependency>
+    <groupId>org.elasticsearch.client</groupId>
+    <artifactId>elasticsearch-rest-high-level-client</artifactId>
+    <version>7.16.3</version> 
+    </dependency>
+    <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch</artifactId>
+        <version>7.16.3</version>
+    </dependency>
+    <dependency>
+    <groupId>org.elasticsearch.client</groupId>
+    <artifactId>elasticsearch-rest-client</artifactId>
+    <version>7.16.3</version> 
+    </dependency>
+
+    <!-- Parquet -->
+    <dependency>
+        <groupId>org.apache.parquet</groupId>
+        <artifactId>parquet-hadoop</artifactId>
+        <version>1.12.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.parquet</groupId>
+        <artifactId>parquet-avro</artifactId>
+        <version>1.12.0</version>
+    </dependency>
+
+    <!-- Hadoop -->
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-common</artifactId>
+        <version>3.2.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.hadoop</groupId>
+        <artifactId>hadoop-mapreduce-client-core</artifactId>
+        <version>3.2.2</version>
+    </dependency>
+
+    <dependency>
+    <groupId>org.apache.avro</groupId>
+    <artifactId>avro</artifactId>
+    <version>1.10.2</version> <!-- or the version you prefer -->
+    </dependency>
+</dependencies>
 
 </project>
