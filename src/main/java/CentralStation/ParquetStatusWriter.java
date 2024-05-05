@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ParquetStatusWriter {
     private static final String OUTPUT_PATH = "/home/toka/Documents/weather_statuses_directory";
-    private static final int BATCH_SIZE = 10; //10000
+    private static final int BATCH_SIZE = 10000; //10000
     private List<Station> recordBuffer;
     private static final HashMap<Long, String> paths = new HashMap<>();
     private static final HashMap<Long, ParquetWriter<GenericRecord>> writers = new HashMap<>();
