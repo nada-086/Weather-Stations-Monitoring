@@ -14,7 +14,9 @@ import org.elasticsearch.xcontent.XContentType;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -22,10 +24,10 @@ import java.util.logging.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@SuppressWarnings("deprecation")
 public class ElasticSearch {
     private static final Logger LOGGER = Logger.getLogger(ElasticSearch.class.getName());
 
-    @SuppressWarnings("deprecation")
     public static void main(String[] args) throws IOException {
         
         RestHighLevelClient client = new RestHighLevelClient(
@@ -46,16 +48,21 @@ public class ElasticSearch {
                         String filePath = file.getAbsolutePath();
 
                         try {
-                            Map<String, Object> doc = parquetToJson(filePath);
+                            List<String> doc = parquetToJson(filePath);
+                            System.out.println(doc.get(0));
+
 
                             // Index document into Elasticsearch
                             if (doc != null) {
-                                IndexRequest request = new IndexRequest("weather_statuses")
+                                System.out.println("innnnnnnnnnn");
+                                IndexRequest request = new IndexRequest("weather_statuses_2")
                                         .source(doc, XContentType.JSON);
-                               
-                                IndexResponse response = client.index(request, RequestOptions.DEFAULT);
-                                String index = response.getIndex();
-                                LOGGER.info("Document indexed to index: " + index);
+                                System.out.println("out reqqqqqqqqq");
+                                // IndexResponse response = client.index(request, RequestOptions.DEFAULT);
+                                // System.out.println("ahhhhhhhhhhhhh:  "+response.getId());
+                                // String index = response.getIndex();
+                                // System.out.println("laaaaaaaaaaaaaaaa: "+index);
+                                // LOGGER.info("Document indexed to index: " + index);
                             }
                         } catch (IOException e) {
                             LOGGER.log(Level.SEVERE, "Error indexing document", e);
@@ -68,30 +75,26 @@ public class ElasticSearch {
         client.close();
     }
 
-    @SuppressWarnings("deprecation")
-    public static Map<String, Object> parquetToJson(String parquetFilePath) throws IOException {
-        Map<String, Object> documents = new HashMap<>();
-        int index = 0; // Index for identifying each JSON string
+    public static List<String> parquetToJson(String parquetFilePath) throws IOException {
+    List<String> jsonDocuments = new ArrayList<>();
 
-        try (AvroParquetReader<GenericRecord> reader = new AvroParquetReader<>(new org.apache.hadoop.fs.Path(parquetFilePath))) {
-            GenericRecord record;
-            ObjectMapper objectMapper = new ObjectMapper();
+    try (AvroParquetReader<GenericRecord> reader = new AvroParquetReader<>(new org.apache.hadoop.fs.Path(parquetFilePath))) {
+        GenericRecord record;
+        ObjectMapper objectMapper = new ObjectMapper();
 
-            // Read each record and convert it to JSON
-            while ((record = reader.read()) != null) {
-                // Convert GenericRecord to a Map
-                Map<String, Object> recordMap = genericRecordToMap(record);
-                // Convert Map to JSON string
-                String json = objectMapper.writeValueAsString(recordMap);
-                // Use a unique key for each JSON string
-                documents.put("data" + index, json);
-                index++;
-            }
+        // Read each record and convert it to JSON
+        while ((record = reader.read()) != null) {
+            // Convert GenericRecord to a Map
+            Map<String, Object> recordMap = genericRecordToMap(record);
+            // Convert Map to JSON string
+            String json = objectMapper.writeValueAsString(recordMap);
+            // Add JSON string to the list
+            jsonDocuments.add(json);
         }
-        return documents.isEmpty() ? null : documents;
     }
-
-    // Convert GenericRecord to a Map
+    return jsonDocuments.isEmpty() ? null : jsonDocuments;
+    }
+       // Convert GenericRecord to a Map
     private static Map<String, Object> genericRecordToMap(GenericRecord record) {
         Map<String, Object> recordMap = new HashMap<>();
         for (Schema.Field field : record.getSchema().getFields()) {
@@ -99,4 +102,6 @@ public class ElasticSearch {
         }
         return recordMap;
     }
+
+
 }
