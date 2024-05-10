@@ -1,0 +1,126 @@
+version: "3.3"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  weather-station-1:
+    image: weather-station
+    hostname: weather-station-1
+    ports:
+      - "8001:8001"
+    networks:
+      - app-tier
+
+  weather-station-2:
+    image: weather-station
+    hostname: weather-station-2
+    ports:
+      - "8002:8001"
+    networks:
+      - app-tier
+
+  weather-station-3:
+    image: weather-station
+    hostname: weather-station-3
+    ports:
+      - "8003:8001"
+    networks:
+      - app-tier
+
+  weather-station-4:
+    image: weather-station
+    hostname: weather-station-4
+    ports:
+      - "8004:8001"
+    networks:
+      - app-tier
+
+  weather-station-5:
+    image: weather-station
+    hostname: weather-station-5
+    ports:
+      - "8005:8001"
+    networks:
+      - app-tier
+
+  weather-station-6:
+    image: weather-station
+    hostname: weather-station-6
+    ports:
+      - "8006:8001"
+    networks:
+      - app-tier
+    
+  weather-station-7:
+    image: weather-station
+    hostname: weather-station-7
+    ports:
+      - "8007:8001"
+    networks:
+      - app-tier
+  
+  weather-station-8:
+    image: weather-station
+    hostname: weather-station-8
+    ports:
+      - "8008:8001"
+    networks:
+      - app-tier
+
+  weather-station-9:
+    image: weather-station
+    hostname: weather-station-9
+    ports:
+      - "8009:8001"
+    networks:
+      - app-tier
+
+  weather-station-10:
+    image: weather-station
+    hostname: weather-station-10
+    ports:
+      - "8010:8001"
+    networks:
+      - app-tier
+
+
+  kafka:
+    image: bitnami/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - app-tier
+    depends_on:
+      - zookeeper
+
+  zookeeper:
+    image: zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - app-tier
+    
+  central-station:
+    image: central-station
+    hostname: central-station
+    ports:
+      -"8030:8020"
+    networks:
+      - app-tier
+
+  shared-storage:
+    image: shared-storage-image
+    volumes:
+      - shared-storage-data:/data
+    networks:
+      - app-tier
+
+volumes:
+  shared-storage-data:
