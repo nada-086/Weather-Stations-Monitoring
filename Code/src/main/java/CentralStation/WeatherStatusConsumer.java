@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class WeatherStatusConsumer {
-    private static final String TOPIC_NAME = "weather_station_topic";
+    private static final String TOPIC_NAME = "weather_topic";
     private static final String BOOTSTRAP_SERVERS = "localhost:9092";
     private static final Bitcask bitcask = new Bitcask("/home/toka/Documents/weather_station_data");
     private static final ParquetStatusWriter parquetWriter;
@@ -30,12 +30,13 @@ public class WeatherStatusConsumer {
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumer_group");
-
+        System.out.println("startingggggg");
         try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(Collections.singletonList(TOPIC_NAME));
 
             while (true) {
                 ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
+                System.out.println("number of recordsssssssssss: "+ records.count());
                 for (ConsumerRecord<String, String> record : records) {
                     processWeatherStatus(record.value());
                 }

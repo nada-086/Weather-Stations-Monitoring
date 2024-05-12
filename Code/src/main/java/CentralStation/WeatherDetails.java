@@ -1,7 +1,7 @@
 package CentralStation;
 
 
-class WeatherDetails {
+public class WeatherDetails {
 
     private int humidity;
     private int temperature;

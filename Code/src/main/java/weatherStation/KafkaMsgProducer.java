@@ -72,7 +72,7 @@ public class KafkaMsgProducer {
         JsonNode rootNode = mapper.readTree(json);
         // Extract humidity value
         int humidity = rootNode.path("weather").path("humidity").asInt();
-        System.out.println("Humidity: " + humidity);
+        // System.out.println("Humidity: " + humidity);
         return humidity;
     }
 

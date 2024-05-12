@@ -14,16 +14,13 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class ParquetStatusWriter {
     private static final String OUTPUT_PATH = "/home/toka/Documents/weather_statuses_directory";
-    private static final int BATCH_SIZE = 10000; //10000
+    private static final int BATCH_SIZE = 100;
     private List<Station> recordBuffer;
     private static final HashMap<Long, String> paths = new HashMap<>();
     private static final HashMap<Long, ParquetWriter<GenericRecord>> writers = new HashMap<>();
@@ -47,6 +44,7 @@ public class ParquetStatusWriter {
 
     public void archiveWeatherStatus(Station status) throws IOException {
         recordBuffer.add(status);
+        System.out.println("record size bufferrrrrrrrrrrrr: " + recordBuffer.size());
         if (recordBuffer.size() >= BATCH_SIZE) {
             writeBatchToParquet();
         }
@@ -54,6 +52,7 @@ public class ParquetStatusWriter {
 
     private void writeBatchToParquet() throws IOException {
         try {
+            System.out.println("tttttttttttttttttttttttttt: " + recordBuffer.size());
             for (Station status : recordBuffer) {
                 long stationID = status.getStationId();
                 String generatedPath = generatePartitionPath(status);
@@ -100,9 +99,25 @@ public class ParquetStatusWriter {
         int day = dateTime.getDayOfMonth();
         int hour = dateTime.getHour();
         int minute = dateTime.getMinute();
-        int sec = dateTime.getSecond();
+        // int sec = dateTime.getSecond();
 
         return OUTPUT_PATH + "/" + year + "-" + month + "-" + day +
              "/" + "Station" + status.getStationId() +
-             "/"  + hour + "-" + minute + "-" + sec + ".parquet";
- }}
+             "/"  + hour + "-" + minute + ".parquet";
+ }
+// private String generatePartitionPath(Station parsedMessage) {
+//     Instant instant = Instant.ofEpochSecond(parsedMessage.getStatusTimestamp());
+//     LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+
+//     int year = dateTime.getYear();
+//     String month = Month.of(dateTime.getMonthValue()).toString();
+// //        int week = dateTime.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) % 4;
+//     int day = dateTime.getDayOfMonth();
+//     int hour = dateTime.getHour();
+//     int minute = dateTime.getMinute();
+
+
+//     return OUTPUT_PATH + "/" + "Station" + parsedMessage.getStationId() + "/" + year + "/" + month + "/" + day + "/" + hour +
+//             "/" + minute + ".parquet";
+// }
+}

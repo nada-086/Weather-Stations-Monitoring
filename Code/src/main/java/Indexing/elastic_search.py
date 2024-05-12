@@ -9,7 +9,7 @@ import pandas as pd
 client = Elasticsearch(['http://localhost:9200'])
 
 # Directory containing Parquet files
-directory_path = "/home/toka/Documents/weather_statuses_directory/2024-MAY-5"
+directory_path = "/home/toka/Documents/weather_statuses_directory/2024-MAY-12"
 
 # Process each Parquet file in the directory
 for station in os.listdir(directory_path):
@@ -30,7 +30,7 @@ for station in os.listdir(directory_path):
 
                     # Index documents into Elasticsearch
                     for doc in docs:
-                        client.index(index='weather_stations', body=doc)
+                        client.index(index='weather_stations_new', body=doc)
                 except Exception as e:
                     print(f"Error indexing document: {e}")
 

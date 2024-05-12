@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f44811d-7db1-4980-88ec-794a817ebd90" name="Changes" comment="">
+    <list default="true" id="52b87b00-e7ea-4b22-8a8d-852fdae5e2c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Indexing/ElasticSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Indexing/ElasticSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,37 +24,37 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2fk8Yd33xd1Zh4YKXAz3tdNPqFD" />
+  <component name="ProjectId" id="2g2x7xKHBKlVDpfGGB718bqfloL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Kafka_Msg_Producer.executor": "Run",
-    "Application.Msg_Producer.executor": "Run",
+    "Application.ElasticSearch.executor": "Run",
     "Application.WeatherStationMock.executor": "Run",
     "Application.WeatherStatusConsumer.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/toka/Weather-Stations-Monitoring",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
+    "last_opened_file_path": "/home/toka/Desktop/8th_CSED/Distrubuted_systems/Incremental-calculation-of-shortest-path-in-dynamic-graphs",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+    "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.WeatherStatusConsumer">
-    <configuration name="KafkaMsgProducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="weatherStation.KafkaMsgProducer" />
+  <component name="RunManager" selected="Application.WeatherStationMock">
+    <configuration name="ElasticSearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Indexing.ElasticSearch" />
       <module name="Weather_Stations_Monitoring" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="weatherStation.*" />
+          <option name="PATTERN" value="Indexing.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -91,22 +88,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.ElasticSearch" />
+      <item itemvalue="Application.WeatherStationMock" />
+      <item itemvalue="Application.WeatherStatusConsumer" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WeatherStatusConsumer" />
         <item itemvalue="Application.WeatherStationMock" />
-        <item itemvalue="Application.KafkaMsgProducer" />
+        <item itemvalue="Application.WeatherStatusConsumer" />
+        <item itemvalue="Application.ElasticSearch" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9f44811d-7db1-4980-88ec-794a817ebd90" name="Changes" comment="" />
-      <created>1714333788784</created>
+      <changelist id="52b87b00-e7ea-4b22-8a8d-852fdae5e2c7" name="Changes" comment="" />
+      <created>1714909320937</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1714333788784</updated>
+      <updated>1714909320937</updated>
     </task>
     <servers />
   </component>
