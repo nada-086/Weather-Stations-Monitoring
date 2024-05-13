@@ -14,10 +14,9 @@ public class ChannelAdapter {
 
     public static WeatherDetails adapt(JSONObject response) throws JSONException {
         int humidity = response.getInt("relativehumidity_2m");
-       int temp = (int) Math.round(response.getDouble("temperature_2m"));
+        int temp = (int) Math.round(response.getDouble("temperature_2m"));
         int wind = (int) Math.round(response.getDouble("windspeed_10m"));
         WeatherDetails weatherData = new WeatherDetails(humidity, temp, wind);
         return weatherData;
     }
-    
 }

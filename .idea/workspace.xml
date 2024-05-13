@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52b87b00-e7ea-4b22-8a8d-852fdae5e2c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Indexing/ElasticSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Indexing/ElasticSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" afterDir="false" />
-    </list>
+    <list default="true" id="537c5c2e-0042-4671-9d6f-208635c96e5b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,64 +35,26 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/toka/Desktop/8th_CSED/Distrubuted_systems/Incremental-calculation-of-shortest-path-in-dynamic-graphs",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.WeatherStationMock">
-    <configuration name="ElasticSearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Indexing.ElasticSearch" />
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
       <module name="Weather_Stations_Monitoring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Indexing.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeatherStationMock" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="weatherStation.WeatherStationMock" />
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <module name="Weather_Stations_Monitoring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="weatherStation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WeatherStatusConsumer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CentralStation.WeatherStatusConsumer" />
-      <module name="Weather_Stations_Monitoring" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="CentralStation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.ElasticSearch" />
-      <item itemvalue="Application.WeatherStationMock" />
-      <item itemvalue="Application.WeatherStatusConsumer" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.WeatherStationMock" />
-        <item itemvalue="Application.WeatherStatusConsumer" />
-        <item itemvalue="Application.ElasticSearch" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

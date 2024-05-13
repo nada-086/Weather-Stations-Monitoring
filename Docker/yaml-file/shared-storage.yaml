@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: shared-volume-1
+  namespace: kafka
+spec:
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteMany
+  storageClassName: shared-storage-1
+  hostPath:
+    path: /home/toka/Documents/storage
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: shared-volume-claim-1
+  namespace: kafka
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: shared-storage-1
+  resources:
+    requests:
+      storage: 2Gi

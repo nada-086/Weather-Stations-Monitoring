@@ -44,7 +44,6 @@ public class ParquetStatusWriter {
 
     public void archiveWeatherStatus(Station status) throws IOException {
         recordBuffer.add(status);
-        System.out.println("record size bufferrrrrrrrrrrrr: " + recordBuffer.size());
         if (recordBuffer.size() >= BATCH_SIZE) {
             writeBatchToParquet();
         }
@@ -52,7 +51,6 @@ public class ParquetStatusWriter {
 
     private void writeBatchToParquet() throws IOException {
         try {
-            System.out.println("tttttttttttttttttttttttttt: " + recordBuffer.size());
             for (Station status : recordBuffer) {
                 long stationID = status.getStationId();
                 String generatedPath = generatePartitionPath(status);
@@ -90,7 +88,7 @@ public class ParquetStatusWriter {
                 .build());
     }
 
- private String generatePartitionPath(Station status) {
+    private String generatePartitionPath(Station status) {
         Instant instant = Instant.ofEpochSecond(status.getStatusTimestamp());
         LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 
@@ -99,25 +97,9 @@ public class ParquetStatusWriter {
         int day = dateTime.getDayOfMonth();
         int hour = dateTime.getHour();
         int minute = dateTime.getMinute();
-        // int sec = dateTime.getSecond();
 
         return OUTPUT_PATH + "/" + year + "-" + month + "-" + day +
              "/" + "Station" + status.getStationId() +
              "/"  + hour + "-" + minute + ".parquet";
- }
-// private String generatePartitionPath(Station parsedMessage) {
-//     Instant instant = Instant.ofEpochSecond(parsedMessage.getStatusTimestamp());
-//     LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
-
-//     int year = dateTime.getYear();
-//     String month = Month.of(dateTime.getMonthValue()).toString();
-// //        int week = dateTime.get(IsoFields.WEEK_OF_WEEK_BASED_YEAR) % 4;
-//     int day = dateTime.getDayOfMonth();
-//     int hour = dateTime.getHour();
-//     int minute = dateTime.getMinute();
-
-
-//     return OUTPUT_PATH + "/" + "Station" + parsedMessage.getStationId() + "/" + year + "/" + month + "/" + day + "/" + hour +
-//             "/" + minute + ".parquet";
-// }
+    }
 }

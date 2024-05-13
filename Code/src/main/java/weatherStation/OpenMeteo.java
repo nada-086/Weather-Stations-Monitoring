@@ -67,5 +67,4 @@ public class OpenMeteo {
     }
         return null;
     }
-    
 }

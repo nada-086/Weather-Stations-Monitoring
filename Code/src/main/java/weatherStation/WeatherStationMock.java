@@ -4,20 +4,14 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
-// import com.fasterxml.jackson.databind.ObjectMapper;
-
 import CentralStation.WeatherDetails;
-
 import static weatherStation.KafkaMsgProducer.rainingTriggers;
 import static weatherStation.KafkaMsgProducer.sendMsg;
-
 import org.codehaus.jettison.json.JSONObject;
 
 public class WeatherStationMock {
 
-    private static final int NUM_STATIONS = 10;
-    //private static final ObjectMapper mapper = new ObjectMapper();
+    private static final int NUM_STATIONS = 10000;
     private static final Random random = new Random();
     private static final ScheduledExecutorService executor = Executors.newScheduledThreadPool(NUM_STATIONS);
     static OpenMeteo openMeteo = new OpenMeteo();
@@ -45,7 +39,6 @@ public class WeatherStationMock {
                 String message = generateWeatherStatus();
                 if (message != null) {
                     // Kafka Producer must be set here
-//                    System.out.println(message);
                     String stationTopic = "weather_topic";
                     sendMsg(stationTopic, message);
                     rainingTriggers(stationTopic);
@@ -60,9 +53,6 @@ public class WeatherStationMock {
             try {
                 // Generate weather status message
                 long statusTimestamp = System.currentTimeMillis() / 1000; // Unix timestamp
-                // int humidity = random.nextInt(101); // Random humidity
-                // int temperature = random.nextInt(141) - 20; // Random temperature (-20 to 120 Fahrenheit)
-                // int windSpeed = random.nextInt(51); // Random wind speed (0 to 50 km/h)
                 JSONObject weatherData = openMeteo.getData(ChannelAdapter.timeStampToDate(statusTimestamp), stationId);
                 WeatherDetails weatherDetails = ChannelAdapter.adapt(weatherData);
 

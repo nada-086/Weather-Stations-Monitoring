@@ -46,6 +46,5 @@ public class Station {
     public void setWeather(WeatherDetails weather) {
         this.weather = weather;
     }
-
 }
 

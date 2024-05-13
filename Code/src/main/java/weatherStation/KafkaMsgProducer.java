@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class KafkaMsgProducer {
     static void sendMsg(String topic, String msg){
         Properties properties = new Properties();
-        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         try (KafkaProducer<String,String> producer = new KafkaProducer<>(properties)) {
@@ -75,22 +75,4 @@ public class KafkaMsgProducer {
         // System.out.println("Humidity: " + humidity);
         return humidity;
     }
-
-//    public static void main(String[] args) {
-//        // produce msg to kafka
-////        send_msg("my_first", "Hye Kafka!are you here");
-//        String json = "{ \n " +
-//                "    \"station_id\": 1,\n" +
-//                "    \"s_no\": 1,\n" +
-//                "    \"battery_status\": \"low\",\n" +
-//                "    \"status_timestamp\": 1681521224,\n" +
-//                "    \"weather\": {\n" +
-//                "        \"humidity\": 71,\n" +
-//                "        \"temperature\": 100,\n" +
-//                "        \"wind_speed\": 13\n" +
-//                "    }\n" +
-//                "}";
-//        sendMsg("humidity_topic", json);
-//        rainingTriggers();
-//    }
 }

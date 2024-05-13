@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Central_Station:jar" />
+      <artifact name="Weather_Stations:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f44811d-7db1-4980-88ec-794a817ebd90" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/ChannelAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/ChannelAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/OpenMeteo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/OpenMeteo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +35,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -45,7 +59,7 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/toka/Weather-Stations-Monitoring",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
