@@ -10,18 +10,15 @@ import static weatherStation.KafkaMsgProducer.sendMsg;
 import org.codehaus.jettison.json.JSONObject;
 
 public class WeatherStationMock {
-
-    private static final int NUM_STATIONS = 10000;
     private static final Random random = new Random();
-    private static final ScheduledExecutorService executor = Executors.newScheduledThreadPool(NUM_STATIONS);
+    private static final ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     static OpenMeteo openMeteo = new OpenMeteo();
     ChannelAdapter channelAdapter = new ChannelAdapter();
 
 
     public static void main(String[] args) {
-        for (int i = 1; i <= NUM_STATIONS; i++) {
-            executor.scheduleWithFixedDelay(new WeatherStation(i), 0, 1, TimeUnit.SECONDS);
-        }
+        String station_id = System.getenv("STATION_ID");
+        executor.scheduleWithFixedDelay(new WeatherStation(station_id), 0, 1, TimeUnit.SECONDS);
     }
 
     static class WeatherStation implements Runnable {
@@ -29,8 +26,8 @@ public class WeatherStationMock {
         private long sNo = 1;
         private String batteryStatus = "medium"; // Initial battery status
 
-        public WeatherStation(int stationId) {
-            this.stationId = stationId;
+        public WeatherStation(String stationId) {
+            this.stationId = Integer.parseInt(stationId);
         }
 
         @Override

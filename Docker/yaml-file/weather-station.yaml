@@ -2,52 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: weather-station
-  name: weather-station-service
-  namespace: kafka
-spec:
-  ports:
-  - port: 8080
-  selector:
-    app: weather-station
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: weather-station
-  name: weather-station
-  namespace: kafka
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: weather-station
-  template:
-    metadata:
-      labels:
-        app: weather-station
-    spec:
-      hostname: weather-station
-      containers:
-      - env:
-        - name: KAFKA_SERVER
-          value: "kafka-service.kafka.svc.cluster.local:9092"
-        - name: STATION_ID
-          value: "0"
-        image: weather-station
-        imagePullPolicy: Never
-        name: weather-station
-        ports:
-        - containerPort: 8080
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
     app: weather-station-1
   name: weather-station-service-1
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -60,7 +16,6 @@ metadata:
   labels:
     app: weather-station-1
   name: weather-station-1
-  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -90,7 +45,6 @@ metadata:
   labels:
     app: weather-station-2
   name: weather-station-service-2
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -103,7 +57,6 @@ metadata:
   labels:
     app: weather-station-2
   name: weather-station-2
-  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -133,7 +86,6 @@ metadata:
   labels:
     app: weather-station-3
   name: weather-station-service-3
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -146,7 +98,7 @@ metadata:
   labels:
     app: weather-station-3
   name: weather-station-3
-  namespace: kafka
+  
 spec:
   replicas: 1
   selector:
@@ -176,7 +128,7 @@ metadata:
   labels:
     app: weather-station-4
   name: weather-station-service-4
-  namespace: kafka
+  
 spec:
   ports:
   - port: 8080
@@ -189,7 +141,7 @@ metadata:
   labels:
     app: weather-station-4
   name: weather-station-4
-  namespace: kafka
+  
 spec:
   replicas: 1
   selector:
@@ -219,7 +171,6 @@ metadata:
   labels:
     app: weather-station-5
   name: weather-station-service-5
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -232,7 +183,6 @@ metadata:
   labels:
     app: weather-station-5
   name: weather-station-5
-  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -262,7 +212,6 @@ metadata:
   labels:
     app: weather-station-6
   name: weather-station-service-6
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -274,8 +223,7 @@ kind: Deployment
 metadata:
   labels:
     app: weather-station-6
-  name: weather-station-6
-  namespace: kafka
+  name: weather-station-6 
 spec:
   replicas: 1
   selector:
@@ -305,7 +253,6 @@ metadata:
   labels:
     app: weather-station-7
   name: weather-station-service-7
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -318,7 +265,6 @@ metadata:
   labels:
     app: weather-station-7
   name: weather-station-7
-  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -348,7 +294,6 @@ metadata:
   labels:
     app: weather-station-8
   name: weather-station-service-8
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -361,7 +306,6 @@ metadata:
   labels:
     app: weather-station-8
   name: weather-station-8
-  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -391,7 +335,6 @@ metadata:
   labels:
     app: weather-station-9
   name: weather-station-service-9
-  namespace: kafka
 spec:
   ports:
   - port: 8080
@@ -404,7 +347,6 @@ metadata:
   labels:
     app: weather-station-9
   name: weather-station-9
-  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -427,3 +369,45 @@ spec:
         name: weather-station-9
         ports:
         - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: weather-station-10
+  name: weather-station-service-10
+spec:
+  ports:
+  - port: 8080
+  selector:
+    app: weather-station-10
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: weather-station-10
+  name: weather-station-10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-station-10
+  template:
+    metadata:
+      labels:
+        app: weather-station-10
+    spec:
+      hostname: weather-station-10
+      containers:
+      - env:
+        - name: KAFKA_SERVER
+          value: "kafka-service.kafka.svc.cluster.local:9092"
+        - name: STATION_ID
+          value: "10"
+        image: weather-station
+        imagePullPolicy: Never
+        name: weather-station-10
+        ports:
+        - containerPort: 8080
+---

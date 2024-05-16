@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+    - protocol: TCP
+      port: 9200
+      targetPort: 9200
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+        - name: elasticsearch
+          image: nshou/elasticsearch-kibana:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9200
+          env:
+            - name: discovery.type
+              value: single-node
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es-indexer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: es-indexer
+  template:
+    metadata:
+      labels:
+        app: es-indexer
+    spec:
+      containers:
+      - name: es-indexer
+        image: es-indexer:latest
+        imagePullPolicy: Never
+        env:
+        - name: ELASTICSEARCH_HOST
+          value: "elasticsearch"
+        - name: ELASTICSEARCH_PORT
+          value: "9200"
+        - name: PARQUET_DIRECTORY
+          value: "/mnt/parquet"
+        volumeMounts:
+        - mountPath: /mnt/parquet
+          name: parquet-files
+      volumes:
+      - name: parquet-files
+        persistentVolumeClaim:
+          claimName: parquet-pvc

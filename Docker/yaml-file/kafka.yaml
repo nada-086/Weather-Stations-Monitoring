@@ -1,45 +1,58 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: kafka
   labels:
-    app: kafka-broker
-  name: kafka-service
-  namespace: kafka
+    app: kafka
 spec:
   ports:
-  - port: 9092
+    - port: 9092
+      name: kafka
   selector:
-    app: kafka-broker
+    app: kafka
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
+  name: kafka
   labels:
-    app: kafka-broker
-  name: kafka-broker
-  namespace: kafka
+    app: kafka
 spec:
+  serviceName: kafka
   replicas: 1
   selector:
     matchLabels:
-      app: kafka-broker
+      app: kafka
   template:
     metadata:
       labels:
-        app: kafka-broker
+        app: kafka
     spec:
       containers:
-      - env:
+      - name: kafka
+        image: bitnami/kafka:latest
+        env:
+        - name: ALLOW_PLAINTEXT_LISTENER
+          value: "yes"
         - name: KAFKA_BROKER_ID
-          value: "1"
-        - name: KAFKA_ZOOKEEPER_CONNECT
-          value: 10.104.68.58:2181
+          value: "0"
         - name: KAFKA_LISTENERS
           value: PLAINTEXT://:9092
         - name: KAFKA_ADVERTISED_LISTENERS
-          value: PLAINTEXT://kafka-service:9092
-        image: bitnami/kafka:latest
-        imagePullPolicy: Never
-        name: kafka-broker
+          value: PLAINTEXT://kafka:9092
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: zookeeper:2181
         ports:
         - containerPort: 9092
+          name: kafka
+        volumeMounts:
+        - name: kafka-data
+          mountPath: /bitnami/kafka
+  volumeClaimTemplates:
+  - metadata:
+      name: kafka-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
