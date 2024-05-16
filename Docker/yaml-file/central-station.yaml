@@ -25,11 +25,11 @@ spec:
           value: "/data/parquet"
         volumeMounts:
         - mountPath: /data
-          name: shared-storage
+          name: shared-volume
       volumes:
-      - name: shared-storage
+      - name: shared-volume
         persistentVolumeClaim:
-          claimName: shared-pvc
+          claimName: shared-volume
 ---
 apiVersion: v1
 kind: Service

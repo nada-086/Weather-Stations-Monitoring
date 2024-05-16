@@ -63,16 +63,12 @@ public class KafkaMsgProducer {
         KafkaStreams streams = new KafkaStreams(builder.build(), props);
         streams.start();
         // Shutdown hook to gracefully close the Kafka Streams application
-        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+//        Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
     }
 
     private static int extractHumidity(String json) throws JsonProcessingException {
-        // Parse JSON using Jackson ObjectMapper
         ObjectMapper mapper = new ObjectMapper();
         JsonNode rootNode = mapper.readTree(json);
-        // Extract humidity value
-        int humidity = rootNode.path("weather").path("humidity").asInt();
-        // System.out.println("Humidity: " + humidity);
-        return humidity;
+        return rootNode.path("weather").path("humidity").asInt();
     }
 }

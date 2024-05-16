@@ -12,9 +12,12 @@
   <component name="ChangeListManager">
     <list default="true" id="9f44811d-7db1-4980-88ec-794a817ebd90" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/elastic-search/elastic_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/elastic-search/elastic_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/elastic-search/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/elastic-search/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/elastic-search.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/elastic-search.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/mock.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

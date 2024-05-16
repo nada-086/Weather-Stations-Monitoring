@@ -9,7 +9,6 @@ spec:
     - protocol: TCP
       port: 9200
       targetPort: 9200
-
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,9 +33,7 @@ spec:
           env:
             - name: discovery.type
               value: single-node
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -68,4 +65,4 @@ spec:
       volumes:
       - name: parquet-files
         persistentVolumeClaim:
-          claimName: parquet-pvc
+          claimName: shared-volume

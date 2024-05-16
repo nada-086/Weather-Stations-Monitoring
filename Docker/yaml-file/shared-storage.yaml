@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: parquet-pv
+  name: shared-volume
 spec:
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/home/data"
+    path: "/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: parquet-pvc
+  name: shared-volume
 spec:
   accessModes:
     - ReadWriteMany

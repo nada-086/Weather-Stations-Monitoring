@@ -2,7 +2,6 @@ from elasticsearch import Elasticsearch
 from avro.datafile import DataFileReader
 from avro.io import DatumReader
 import os
-import json
 import pandas as pd
 
 # Connect to Elasticsearch
@@ -11,7 +10,7 @@ es_port = os.getenv("ELASTICSEARCH_PORT", "9200")
 es = Elasticsearch([f'http://{es_host}:{es_port}'])
 
 # Directory containing Parquet files
-directory_path = os.getenv("PARQUET_DIRECTORY", "/mnt/parquet")
+directory_path = os.getenv("PARQUET_DIRECTORY", "/data/parquet")
 
 # Process each Parquet file in the directory
 for station in os.listdir(directory_path):
