@@ -9,3 +9,4 @@ WORKDIR /app
 
 # Command to run the application
 CMD ["java", "-jar", "Weather_Station.jar"]
+

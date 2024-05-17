@@ -1,68 +1,29 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: elasticsearch
-spec:
-  selector:
-    app: elasticsearch
-  ports:
-    - protocol: TCP
-      port: 9200
-      targetPort: 9200
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: elasticsearch-deployment
+  labels:
+    app: elastic-kibana
+  name: elastic-kibana
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: elasticsearch
+      app: elastic-kibana
   template:
     metadata:
       labels:
-        app: elasticsearch
+        app: elastic-kibana
     spec:
+      hostname: elastic-kibana
       containers:
-        - name: elasticsearch
-          image: nshou/elasticsearch-kibana:latest
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 9200
-          env:
-            - name: discovery.type
-              value: single-node
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: es-indexer
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: es-indexer
-  template:
-    metadata:
-      labels:
-        app: es-indexer
-    spec:
-      containers:
-      - name: es-indexer
-        image: es-indexer:latest
+      - image: nshou/elasticsearch-kibana
         imagePullPolicy: Never
-        env:
-        - name: ELASTICSEARCH_HOST
-          value: "elasticsearch"
-        - name: ELASTICSEARCH_PORT
-          value: "9200"
-        - name: PARQUET_DIRECTORY
-          value: "/mnt/parquet"
+        name: elastic-kibana
+        ports:
+          - containerPort: 9200  # Elasticsearch HTTP port
+          - containerPort: 5601  # Kibana port
         volumeMounts:
-        - mountPath: /mnt/parquet
-          name: parquet-files
+          - name: shared-volume
+            mountPath: /home/data/parquet
       volumes:
-      - name: parquet-files
-        persistentVolumeClaim:
-          claimName: shared-volume
+        - name: shared-volume

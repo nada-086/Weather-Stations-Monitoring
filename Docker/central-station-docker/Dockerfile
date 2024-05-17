@@ -1,11 +1,17 @@
-# Use an OpenJDK base image
+# Use an official OpenJDK runtime as a parent image
 FROM openjdk:23-slim
-
-# Copy necessary files
-COPY Weather_Stations_Monitoring.jar /app/Central_Station.jar
 
 # Set the working directory
 WORKDIR /app
 
-# Command to run the application
-CMD ["java", "-jar", "Central_Station.jar"]
+# Copy the application JAR file and any other necessary files
+COPY Weather_Stations_Monitoring.jar /app/Weather_Stations_Monitoring.jar
+
+# Copy the policy file to the container
+COPY java.policy /app/java.policy
+
+# Set the Java options to use the policy file
+ENV JAVA_OPTS="-Djava.security.manager -Djava.security.policy=/app/java.policy"
+
+# Run the application
+CMD ["sh", "-c", "java $JAVA_OPTS -jar Weather_Stations_Monitoring.jar"]

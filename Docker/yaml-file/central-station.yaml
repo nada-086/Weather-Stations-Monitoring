@@ -22,12 +22,10 @@ spec:
           value: "kafka:9092"
         - name: BITCASK_DIRECTORY
           value: "/home/data/bitcask"
-        - name: PARQUET_OUTPUT_PATH
+        - name: PARQUET_DIRECTORY
           value: "/home/data/parquet"
-        - name: HADOOP_CONF_DIR
-          value: "/usr/local/hadoop/etc/hadoop"
         volumeMounts:
-        - mountPath: /home/data
+        - mountPath: /data
           name: shared-volume
       volumes:
       - name: shared-volume

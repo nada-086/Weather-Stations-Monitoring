@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="537c5c2e-0042-4671-9d6f-208635c96e5b" name="Changes" comment="" />
+    <list default="true" id="537c5c2e-0042-4671-9d6f-208635c96e5b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Code/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/Code/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Code/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Code/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Code/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/yaml-file/central-station.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/yaml-file/central-station.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docker/yaml-file/elastic-search.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Docker/yaml-file/elastic-search.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,41 +33,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ElasticSearch.executor": "Run",
-    "Application.WeatherStationMock.executor": "Run",
-    "Application.WeatherStatusConsumer.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/toka/Desktop/8th_CSED/Distrubuted_systems/Incremental-calculation-of-shortest-path-in-dynamic-graphs",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "settings.sync"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ElasticSearch.executor&quot;: &quot;Run&quot;,
+    &quot;Application.WeatherStationMock.executor&quot;: &quot;Run&quot;,
+    &quot;Application.WeatherStatusConsumer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/toka/Desktop/8th_CSED/Distrubuted_systems/Incremental-calculation-of-shortest-path-in-dynamic-graphs&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;
   }
-}]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Weather_Stations_Monitoring" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Weather_Stations_Monitoring" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="52b87b00-e7ea-4b22-8a8d-852fdae5e2c7" name="Changes" comment="" />
+      <changelist id="537c5c2e-0042-4671-9d6f-208635c96e5b" name="Changes" comment="" />
       <created>1714909320937</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

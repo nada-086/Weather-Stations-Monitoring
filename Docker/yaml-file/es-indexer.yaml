@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es-indexer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: es-indexer
+  template:
+    metadata:
+      labels:
+        app: es-indexer
+    spec:
+      containers:
+      - name: es-indexer
+        image: es-indexer:latest
+        imagePullPolicy: Never
+        env:
+        - name: ELASTICSEARCH_HOST
+          value: "elasticsearch"
+        - name: ELASTICSEARCH_PORT
+          value: "9200"
+        - name: PARQUET_DIRECTORY
+          value: "/home/data/parquet"
+        volumeMounts:
+        - mountPath: /home/data/parquet
+          name: parquet-files
+      volumes:
+      - name: parquet-files
+        persistentVolumeClaim:
+          claimName: shared-volume

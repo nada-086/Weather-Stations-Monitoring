@@ -8,6 +8,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.parquet.avro.AvroParquetWriter;
 import org.apache.parquet.hadoop.ParquetWriter;
 import org.apache.parquet.hadoop.metadata.CompressionCodecName;
+import org.apache.hadoop.conf.Configuration;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -19,9 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ParquetStatusWriter {
-    private static final String OUTPUT_PATH = "/home/data/parquet";
+    private static final String OUTPUT_PATH = System.getenv("PARQUET_DIRECTORY");
     private static final int BATCH_SIZE = 100;
-    private List<Station> recordBuffer;
+    private final List<Station> recordBuffer;
     private static final HashMap<Long, String> paths = new HashMap<>();
     private static final HashMap<Long, ParquetWriter<GenericRecord>> writers = new HashMap<>();
 
@@ -31,15 +32,15 @@ public class ParquetStatusWriter {
 
     private static Schema createSchema() {
         return SchemaBuilder.record("weather_statuses")
-                .fields()
-                .name("station_id").type().longType().noDefault()
-                .name("s_no").type().longType().noDefault()
-                .name("battery_status").type().stringType().noDefault()
-                .name("status_timestamp").type().longType().noDefault()
-                .name("weather_humidity").type().intType().noDefault()
-                .name("weather_temperature").type().intType().noDefault()
-                .name("weather_wind_speed").type().intType().noDefault()
-                .endRecord();
+            .fields()
+            .name("station_id").type().longType().noDefault()
+            .name("s_no").type().longType().noDefault()
+            .name("battery_status").type().stringType().noDefault()
+            .name("status_timestamp").type().longType().noDefault()
+            .name("weather_humidity").type().intType().noDefault()
+            .name("weather_temperature").type().intType().noDefault()
+            .name("weather_wind_speed").type().intType().noDefault()
+            .endRecord();
     }
 
     public void archiveWeatherStatus(Station status) throws IOException {
@@ -57,15 +58,17 @@ public class ParquetStatusWriter {
                 if (paths.get(stationID) == null || !generatedPath.equals(paths.get(stationID))) {
                     createWriter(generatedPath, stationID);
                 }
+                System.out.println("Parquet File Path Generated");
                 GenericRecord record = new GenericData.Record(createSchema());
-                record.put("station_id", stationID);
-                record.put("s_no", status.getSNo());
-                record.put("battery_status", status.getBatteryStatus());
-                record.put("status_timestamp", status.getStatusTimestamp());
-                record.put("weather_humidity", status.getWeather().getHumidity());
-                record.put("weather_temperature", status.getWeather().getTemperature());
-                record.put("weather_wind_speed", status.getWeather().getWindSpeed());
+                                        record.put("station_id", stationID);
+                                        record.put("s_no", status.getSNo());
+                                        record.put("battery_status", status.getBatteryStatus());
+                                        record.put("status_timestamp", status.getStatusTimestamp());
+                                        record.put("weather_humidity", status.getWeather().getHumidity());
+                                        record.put("weather_temperature", status.getWeather().getTemperature());
+                                        record.put("weather_wind_speed", status.getWeather().getWindSpeed());
                 writers.get(stationID).write(record);
+                System.out.println("Record Written");
             }
         } catch (IOException e) {
             throw new RuntimeException("Error writing batch to Parquet: " + e.getMessage(), e);
@@ -74,8 +77,8 @@ public class ParquetStatusWriter {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void createWriter(String generatedPath, long stationID) throws IOException {
+        System.out.println("Creating writer for path: " + generatedPath + " and stationID: " + stationID);
         paths.put(stationID, generatedPath);
         CompressionCodecName codec = CompressionCodecName.SNAPPY;
         if (writers.get(stationID) != null) {
@@ -85,7 +88,9 @@ public class ParquetStatusWriter {
                 .withSchema(createSchema())
                 .withCompressionCodec(codec)
                 .withDataModel(GenericData.get())
+                .withConf(new Configuration())
                 .build());
+        System.out.println("Writer created successfully");
     }
 
     private String generatePartitionPath(Station status) {
@@ -99,7 +104,7 @@ public class ParquetStatusWriter {
         int minute = dateTime.getMinute();
 
         return OUTPUT_PATH + "/" + year + "-" + month + "-" + day +
-             "/" + "Station" + status.getStationId() +
-             "/"  + hour + "-" + minute + ".parquet";
+            "/" + "Station" + status.getStationId() +
+            "/" + hour + "-" + minute + ".parquet";
     }
 }
