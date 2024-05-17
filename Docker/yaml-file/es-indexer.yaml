@@ -25,8 +25,8 @@ spec:
           value: "/home/data/parquet"
         volumeMounts:
         - mountPath: /home/data/parquet
-          name: parquet-files
+          name: shared-volume
       volumes:
-      - name: parquet-files
+      - name: shared-volume
         persistentVolumeClaim:
           claimName: shared-volume
