@@ -2,7 +2,7 @@
 FROM openjdk:23-slim
 
 # Copy necessary files
-COPY Central_Station.jar /app/Central_Station.jar
+COPY Weather_Stations_Monitoring.jar /app/Central_Station.jar
 
 # Set the working directory
 WORKDIR /app

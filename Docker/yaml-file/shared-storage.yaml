@@ -8,7 +8,7 @@ spec:
   accessModes:
     - ReadWriteMany
   hostPath:
-    path: "/data"
+    path: "/home/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

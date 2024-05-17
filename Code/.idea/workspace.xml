@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Central_Station:jar" />
-      <artifact name="Weather_Stations:jar" />
+      <artifact name="Weather_Stations_Monitoring:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,13 +10,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f44811d-7db1-4980-88ec-794a817ebd90" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Central_Station_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Weather_Stations_Monitoring_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Weather_Stations_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/KafkaMsgProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Docker/elastic-search/elastic_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/elastic-search/elastic_search.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Docker/elastic-search/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/elastic-search/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/elastic-search.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/elastic-search.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/mock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/WeatherStatusConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/ChannelAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/ChannelAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/weatherStation/WeatherStationMock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/central-station-docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/central-station-docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/weather-station-docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/weather-station-docker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/central-station.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/central-station.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/kafka.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/kafka.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/shared-storage.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/shared-storage.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/weather-station.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/weather-station.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/z-mock.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +45,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -53,6 +64,7 @@
     &quot;Application.WeatherStatusConsumer.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/toka/Weather-Stations-Monitoring&quot;,
@@ -62,6 +74,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="weatherStation" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.WeatherStatusConsumer">
     <configuration name="KafkaMsgProducer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="weatherStation.KafkaMsgProducer" />

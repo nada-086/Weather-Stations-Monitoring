@@ -102,7 +102,7 @@ spec:
           name: kafka
         volumeMounts:
         - name: shared-volume
-          mountPath: /data/kafka
+          mountPath: /home/data/kafka
   volumeClaimTemplates:
   - metadata:
       name: shared-volume
@@ -111,3 +111,16 @@ spec:
       resources:
         requests:
           storage: 10Gi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-topics-config
+data:
+  topics.yaml: |
+    topics:
+      - name: weather_topic
+        bootstrap-server localhost:9092
+      - name: rain_detected_topic
+        bootstrap-server localhost:9092

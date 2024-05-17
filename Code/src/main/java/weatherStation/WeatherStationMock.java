@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import CentralStation.WeatherDetails;
 import static weatherStation.KafkaMsgProducer.rainingTriggers;
 import static weatherStation.KafkaMsgProducer.sendMsg;
 import org.codehaus.jettison.json.JSONObject;
@@ -38,8 +37,8 @@ public class WeatherStationMock {
                     // Kafka Producer must be set here
                     String stationTopic = "weather_topic";
                     sendMsg(stationTopic, message);
+                    System.out.println("=============== Message is Sent ====================");
                     rainingTriggers(stationTopic);
-                    
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -50,12 +49,15 @@ public class WeatherStationMock {
             try {
                 // Generate weather status message
                 long statusTimestamp = System.currentTimeMillis() / 1000; // Unix timestamp
-                JSONObject weatherData = openMeteo.getData(ChannelAdapter.timeStampToDate(statusTimestamp), stationId);
-                WeatherDetails weatherDetails = ChannelAdapter.adapt(weatherData);
+//                JSONObject weatherData = openMeteo.getData(ChannelAdapter.timeStampToDate(statusTimestamp), stationId);
+//                WeatherDetails weatherDetails = ChannelAdapter.adapt(weatherData);
+//                int humidity = weatherDetails.getHumidity();
+//                int temperature = weatherDetails.getTemperature();
+//                int windSpeed = weatherDetails.getWindSpeed();
 
-                int humidity = weatherDetails.getHumidity();
-                int temperature = weatherDetails.getTemperature();
-                int windSpeed = weatherDetails.getWindSpeed();
+                int humidity = random.nextInt(101); // Random humidity
+                int temperature = random.nextInt(141) - 20; // Random temperature (-20 to 120 Fahrenheit)
+                int windSpeed = random.nextInt(51); // Random wind speed (0 to 50 km/h)
 
                 // Randomly change battery status
                 double rand = random.nextDouble();
