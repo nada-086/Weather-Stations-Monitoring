@@ -49,15 +49,15 @@ public class WeatherStationMock {
             try {
                 // Generate weather status message
                 long statusTimestamp = System.currentTimeMillis() / 1000; // Unix timestamp
-//                JSONObject weatherData = openMeteo.getData(ChannelAdapter.timeStampToDate(statusTimestamp), stationId);
-//                WeatherDetails weatherDetails = ChannelAdapter.adapt(weatherData);
-//                int humidity = weatherDetails.getHumidity();
-//                int temperature = weatherDetails.getTemperature();
-//                int windSpeed = weatherDetails.getWindSpeed();
+               JSONObject weatherData = openMeteo.getData(ChannelAdapter.timeStampToDate(statusTimestamp), stationId);
+               WeatherDetails weatherDetails = ChannelAdapter.adapt(weatherData);
+               int humidity = weatherDetails.getHumidity();
+               int temperature = weatherDetails.getTemperature();
+               int windSpeed = weatherDetails.getWindSpeed();
 
-                int humidity = random.nextInt(101); // Random humidity
-                int temperature = random.nextInt(141) - 20; // Random temperature (-20 to 120 Fahrenheit)
-                int windSpeed = random.nextInt(51); // Random wind speed (0 to 50 km/h)
+                // int humidity = random.nextInt(101); // Random humidity
+                // int temperature = random.nextInt(141) - 20; // Random temperature (-20 to 120 Fahrenheit)
+                // int windSpeed = random.nextInt(51); // Random wind speed (0 to 50 km/h)
 
                 // Randomly change battery status
                 double rand = random.nextDouble();
