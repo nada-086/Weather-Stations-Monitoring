@@ -25,7 +25,7 @@ spec:
         - name: PARQUET_DIRECTORY
           value: "/home/data/parquet"
         volumeMounts:
-        - mountPath: /data
+        - mountPath: /home/data
           name: shared-volume
       volumes:
       - name: shared-volume

@@ -11,4 +11,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY elastic_search.py elastic_search.py
 
 # Set the entrypoint for the container
-ENTRYPOINT ["python", "elastic_search.py"]
+CMD ["python", "elastic_search.py"]
+

@@ -1,29 +1,79 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch
+spec:
+  selector:
+    app: elasticsearch
+  ports:
+  - name: http
+    port: 9200
+    targetPort: 9200
+  - name: transport
+    port: 9300
+    targetPort: 9300
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: elastic-kibana
-  name: elastic-kibana
+  name: elasticsearch
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: elastic-kibana
+      app: elasticsearch
   template:
     metadata:
       labels:
-        app: elastic-kibana
+        app: elasticsearch
     spec:
-      hostname: elastic-kibana
       containers:
-      - image: nshou/elasticsearch-kibana
+      - name: elasticsearch
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
         imagePullPolicy: Never
-        name: elastic-kibana
         ports:
-          - containerPort: 9200  # Elasticsearch HTTP port
-          - containerPort: 5601  # Kibana port
-        volumeMounts:
-          - name: shared-volume
-            mountPath: /home/data/parquet
-      volumes:
-        - name: shared-volume
+        - containerPort: 9200
+          name: http
+        - containerPort: 9300
+          name: transport
+        env:
+        - name: discovery.type
+          value: single-node
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kibana
+spec:
+  type: LoadBalancer
+  selector:
+    app: kibana
+  ports:
+  - name: http
+    port: 5601
+    targetPort: 5601
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+      - name: kibana
+        image: docker.elastic.co/kibana/kibana:7.17.0
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5601
+          name: http
+        env:
+        - name: ELASTICSEARCH_HOSTS
+          value: http://elasticsearch:9200

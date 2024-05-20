@@ -75,4 +75,307 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
----
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-3
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-3
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-3
+#     spec:
+#       containers:
+#       - name: weather-station-3
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "3"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-3
+# spec:
+#   selector:
+#     app: weather-station-3
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-4
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-4
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-4
+#     spec:
+#       containers:
+#       - name: weather-station-4
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "4"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-4
+# spec:
+#   selector:
+#     app: weather-station-4
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-5
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-5
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-5
+#     spec:
+#       containers:
+#       - name: weather-station-5
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "5"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-5
+# spec:
+#   selector:
+#     app: weather-station-5
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-6
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-6
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-6
+#     spec:
+#       containers:
+#       - name: weather-station-6
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "6"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-6
+# spec:
+#   selector:
+#     app: weather-station-6
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-7
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-7
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-7
+#     spec:
+#       containers:
+#       - name: weather-station-7
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "7"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-7
+# spec:
+#   selector:
+#     app: weather-station-7
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-8
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-8
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-8
+#     spec:
+#       containers:
+#       - name: weather-station-8
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "8"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-8
+# spec:
+#   selector:
+#     app: weather-station-8
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-9
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-9
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-9
+#     spec:
+#       containers:
+#       - name: weather-station-9
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "9"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-9
+# spec:
+#   selector:
+#     app: weather-station-9
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: weather-station-10
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: weather-station-10
+#   template:
+#     metadata:
+#       labels:
+#         app: weather-station-10
+#     spec:
+#       containers:
+#       - name: weather-station-10
+#         image: weather-station:latest
+#         imagePullPolicy: Never
+#         env:
+#         - name: STATION_ID
+#           value: "10"
+#         - name: KAFKA_BROKER_URL
+#           value: "kafka:9092"
+#         ports:
+#         - containerPort: 8080
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: weather-station-10
+# spec:
+#   selector:
+#     app: weather-station-10
+#   ports:
+#     - protocol: TCP
+#       port: 8080
+#       targetPort: 8080

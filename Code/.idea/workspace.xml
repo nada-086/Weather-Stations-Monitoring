@@ -10,13 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f44811d-7db1-4980-88ec-794a817ebd90" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CentralStation/ParquetStatusWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/central-station.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/central-station.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Docker/yaml-file/elastic-search.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../Docker/yaml-file/elastic-search.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

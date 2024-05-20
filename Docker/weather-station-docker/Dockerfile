@@ -2,11 +2,11 @@
 FROM openjdk:23-slim
 
 # Copy necessary files
-COPY Weather_Stations_Monitoring.jar /app/Weather_Station.jar
+COPY Bonus.jar /app/Bonus.jar
 
 # Set the working directory
 WORKDIR /app
 
 # Command to run the application
-CMD ["java", "-jar", "Weather_Station.jar"]
+CMD ["java", "-jar", "Bonus.jar"]
 
